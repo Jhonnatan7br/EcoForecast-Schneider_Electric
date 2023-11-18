@@ -3,7 +3,7 @@ import datetime
 import pandas as pd
 from utils import perform_get_request, xml_to_load_dataframe, xml_to_gen_data
 
-def get_load_data_from_entsoe(regions, periodStart='202302240000', periodEnd='202303240000', output_path='./data'):
+def get_load_data_from_entsoe(regions, periodStart='202201010000', periodEnd='202301010000', output_path='./data'):
 
     # TODO: There is a period range limit of 1 year for this API. Process in 1 year chunks if needed
 
@@ -30,7 +30,8 @@ def get_load_data_from_entsoe(regions, periodStart='202302240000', periodEnd='20
         response_content = perform_get_request(url, params)
 
         # Response content is a string of XML data
-        df = xml_to_load_dataframe(response_content, 'Load')
+        # df = xml_to_load_dataframe(response_content, 'Load')
+        df = xml_to_load_dataframe(response_content)
         
         # Save the DataFrame to a CSV file
         df.to_csv(f'{output_path}/load_{region}.csv', index=False)
