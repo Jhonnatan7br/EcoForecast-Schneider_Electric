@@ -6,13 +6,13 @@
 # ./run_pipeline.sh 2020-01-01 2020-01-31 data/raw_data.csv data/processed_data.csv models/model.pkl data/test_data.csv predictions/predictions.json
 
 # Get command line arguments
-start_date="$1"
-end_date="$2"
+start_date="2022-01-01"
+end_date="2023-01-01"
 raw_data_file="$3"
 processed_data_file="$4"
 model_file="$5"
-test_data_file="$6"
-predictions_file="$7"
+test_data_file="C:\Users\Jhonnatan\Documents\GitHub\EcoForecast-Schneider_Electric\data\test.csv"
+predictions_file="predictions/example_predictions.json"
 
 # Run data_ingestion.py
 echo "Starting data ingestion..."
