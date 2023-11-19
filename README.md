@@ -3,11 +3,39 @@
 # SE-Europe-Data_Challenge
 NUWE - Schneider Electric European Data Science Challenge in November 2023.
 
-Create a model capable of predicting the country (from a list of nine) that will have the most surplus of green energy in the next hour. For this task, you need to consider both the energy generation from renewable sources (wind, solar, geothermic, etc.), and the load (energy consumption). The surplus of green energy is considered to be the difference between the generated green energy and the consumed energy.
+Create a model capable of predicting the country (from a list of nine) that will have the most surplus of green energy in the next hour. It is needed to consider both the energy generation from renewable sources (wind, solar, geothermic, etc.), and the load (energy consumption). The surplus of green energy is considered to be the difference between the generated green energy and the consumed energy.
 
 The countries to focus on are: Spain, UK, Germany, Denmark, Sweden, Hungary, Italy, Poland, and the Netherlands.
 
 The solution must not only align with Schneider Electric's ethos but also go beyond its current offerings, presenting an unprecedented approach.
+
+# Types of energy on the ingested
+
+It was selected only renewables sources of energy with the following codes ["B01", "B09", "B11", "B12", "B13", "B15", "B16", "B18", "B19"]
+
+ENTSO-E documentation and B10 and B17 are no longer considered green. for this reason are not included, Reference: Gather Worlds
+URL: https://eepublicdownloads.blob.core.windows.net/public-cdn-container/clean-documents/Publications/Statistics/Factsheet/entsoe_sfs2022_web.pdf
+
+- B01 Biomass 
+- B02 Fossil Brown coal/Lignite
+- B03 Fossil Coal-derived gas
+- B04 Fossil Gas
+- B05 Fossil Hard coal
+- B06 Fossil Oil
+- B07 Fossil Oil shale
+- B08 Fossil Peat
+- B09 Geothermal
+- B10 Hydro Pumped Storage
+- B11 Hydro Run-of-river and poundage
+- B12 Hydro Water Reservoir
+- B13 Marine
+- B14 Nuclear
+- B15 Other renewable
+- B16 Solar
+- B17 Waste
+- B18 Wind Offshore
+- B19 Wind Onshore
+- B20 Other
 
 # Tokens:
 - b5b8c21b-a637-4e17-a8fe-0d39a16aa849

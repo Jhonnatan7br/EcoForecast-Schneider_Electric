@@ -1,6 +1,10 @@
 import argparse
+import pandas as pd
 
-def load_data(file_path):
+df = pd.DataFrame()
+
+def load_data("C:/Users/Jhonnatan/Documents/GitHub/EcoForecast-Schneider_Electric/data/gen_DE_B01.csv"): # File Path
+    # C:\Users\Jhonnatan\Documents\GitHub\EcoForecast-Schneider_Electric\data\gen_DE_B01.csv"
     # TODO: Load data from CSV file
 
     return df
