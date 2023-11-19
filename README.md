@@ -11,9 +11,17 @@ The solution must not only align with Schneider Electric's ethos but also go bey
 
 # Types of energy on the ingested
 
-It was selected only renewables sources of energy with the following codes ["B01", "B09", "B11", "B12", "B13", "B15", "B16", "B18", "B19"]
+It was selected only renewables sources of energy with the following codes ["B01", "B09", "B11", "B10", "B12", "B13", "B15", "B16", "B18", "B19"]
 
-ENTSO-E documentation and B10 and B17 are no longer considered green. for this reason are not included, Reference: Gather Worlds
+"""
+#Interpolate any missing data
+df.interpolate(method='linear', limit_direction='both', inplace=True)
+
+a) There's a specific hour (e.g. 01/02/22 15:30h) but there's no more time rows in that same hour (no 15:00h or 15:15h or 15:45). In this case these fields should be populated with the interpolate() function
+b) There's a specific hour (e.g. 22/03/22 18h) that doesn't have a single time interval in the dataset (no 18:00, 18:15, 18:30, or 18:45, nothing). In this case simply ignore the whole hour and move to the next one
+"""
+
+ENTSO-E documentation B17 is no longer considered green. for this reason are not included, Reference: Gather Worlds
 URL: https://eepublicdownloads.blob.core.windows.net/public-cdn-container/clean-documents/Publications/Statistics/Factsheet/entsoe_sfs2022_web.pdf
 
 - B01 Biomass 

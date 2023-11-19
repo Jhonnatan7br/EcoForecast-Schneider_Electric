@@ -3,6 +3,9 @@ import datetime
 import pandas as pd
 from utils import perform_get_request, xml_to_load_dataframe, xml_to_gen_data
 
+GREEN_ENERGY = ["B01", "B09", "B11", "B10", "B12", "B13", "B15", "B16", "B18", "B19"]
+    
+
 def get_load_data_from_entsoe(regions, periodStart='202201010000', periodEnd='202301010000', output_path='./data'):
 
     # TODO: There is a period range limit of 1 year for this API. Process in 1 year chunks if needed
@@ -38,7 +41,7 @@ def get_load_data_from_entsoe(regions, periodStart='202201010000', periodEnd='20
 
     return
 
-def get_gen_data_from_entsoe(regions, periodStart='202302240000', periodEnd='202303240000', output_path='./data'):
+def get_gen_data_from_entsoe(regions, periodStart='202201010000', periodEnd='202301010000', output_path='./data'):
 
     # TODO: There is a period range limit of 1 day for this API. Process in 1 day chunks if needed
 
@@ -81,13 +84,13 @@ def parse_arguments():
     parser.add_argument(
         '--start_time', 
         type=lambda s: datetime.datetime.strptime(s, '%Y-%m-%d'), 
-        default=datetime.datetime(2023, 1, 1), 
+        default=datetime.datetime(2022, 1, 1), 
         help='Start time for the data to download, format: YYYY-MM-DD'
     )
     parser.add_argument(
         '--end_time', 
         type=lambda s: datetime.datetime.strptime(s, '%Y-%m-%d'), 
-        default=datetime.datetime(2023, 1, 2), 
+        default=datetime.datetime(2023, 1, 1), 
         help='End time for the data to download, format: YYYY-MM-DD'
     )
     parser.add_argument(
