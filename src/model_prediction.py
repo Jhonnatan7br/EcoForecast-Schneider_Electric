@@ -1,21 +1,28 @@
 import pandas as pd
 import argparse
+import json
+from joblib import load
 
 def load_data(file_path):
-    # TODO: Load test data from CSV file
+    # Load test data from CSV file
+    df = pd.read_csv(file_path)
     return df
 
 def load_model(model_path):
-    # TODO: Load the trained model
+    # Load the trained model
+    model = load(model_path)
     return model
 
 def make_predictions(df, model):
-    # TODO: Use the model to make predictions on the test data
+    # Use the model to make predictions on the test data
+    predictions = model.predict(df)
     return predictions
 
 def save_predictions(predictions, predictions_file):
-    # TODO: Save predictions to a JSON file
-    pass
+    # Save predictions to a JSON file
+    predictions_dict = {'predictions': predictions.tolist()}
+    with open(predictions_file, 'w') as f:
+        json.dump(predictions_dict, f)
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Prediction script for Energy Forecasting Hackathon')
@@ -44,6 +51,7 @@ def main(input_file, model_file, output_file):
     model = load_model(model_file)
     predictions = make_predictions(df, model)
     save_predictions(predictions, output_file)
+    print(f"Predictions saved to {output_file}")
 
 if __name__ == "__main__":
     args = parse_arguments()
