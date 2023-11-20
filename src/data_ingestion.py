@@ -78,8 +78,59 @@ def get_gen_data_from_entsoe(regions, periodStart='202201010000', periodEnd='202
 
     return
 
+def perform_get_request(url, params):
+    # Perform a GET request to the ENTSO-E API
+    response = requests.get(url, params=params)
+    if response.status_code == 200:
+        return response.text
+    else:
+        print(f"Failed to fetch data: {response.status_code}")
+        return None
+
+def xml_to_gen_data(xml_data):
+    # Convert XML data to pandas DataFrames
+    root = ET.fromstring(xml_data)
+    # Assuming the structure of XML and extracting relevant data
+    # You need to adapt this part based on the actual structure of your XML response
+    # ...
+    return dfs  # Where dfs is a dictionary of {psr_type: DataFrame}
+
+def get_gen_data_from_entsoe(regions, periodStart='202201010000', periodEnd='202301010000', output_path='./data'):
+    url = 'https://transparency.entsoe.eu/api'  # Assuming this is the correct URL
+
+    # General parameters for the API
+    params = {
+        'securityToken': '1d9cd4bd-f8aa-476c-8cc1-3442dc91506d',
+        'documentType': 'A75',
+        'processType': 'A16',
+        'outBiddingZone_Domain': '', # used for Load data
+        'in_Domain': '', # used for Generation data
+        'periodStart': periodStart, # in the format YYYYMMDDHHMM
+        'periodEnd': periodEnd # in the format YYYYMMDDHHMM
+    }
+
+    for region, area_code in regions.items():
+        print(f'Fetching data for {region}...')
+        params['outBiddingZone_Domain'] = area_code
+        params['in_Domain'] = area_code
+
+        response_content = perform_get_request(url, params)
+
+        if response_content:
+            dfs = xml_to_gen_data(response_content)
+
+            for psr_type, df in dfs.items():
+                if psr_type in ["B01", "B09", "B11", "B10", "B12", "B13", "B15", "B16", "B18", "B19"]:
+                    df.to_csv(f'{output_path}/gen_{region}_{psr_type}.csv', index=False)
+
+    return
 
 def parse_arguments():
+    parser = argparse.ArgumentParser(description='Data ingestion script for Energy Forecasting Hackathon')
+    parser.add_argument('--start_time', type=lambda s: datetime.datetime.strptime(s, '%Y-%m-%d'), default=datetime.datetime(2022, 1, 1), help='Start time for the data to download, format: YYYY-MM-DD')
+    parser.add_argument('--end_time', type=lambda s: datetime.datetime.strptime(s, '%Y-%m-%d'), default=datetime.datetime(2023, 1, 1), help='End time for the data to download, format: YYYY-MM-DD')
+    parser.add_argument('--output_path', type=str, default='./data', help='Name of the output file')
+    return parser.parse_args()
     parser = argparse.ArgumentParser(description='Data ingestion script for Energy Forecasting Hackathon')
     parser.add_argument(
         '--start_time', 
