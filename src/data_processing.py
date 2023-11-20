@@ -159,6 +159,9 @@ output_file_path = 'C:/Users/Jhonnatan/Documents/GitHub/EcoForecast-Schneider_El
 # Assuming load_data, clean_data, and preprocess_data_for_ml are already defined functions
 # from the previous discussions and you have them implemented in your script.
 
+# To execute this script, you would run it from the command line and pass the input and output file paths as arguments. For example:
+# python script_name.py --input_file path_to_input_file.csv --output_file path_to_output_file.csv
+
 def save_data(df, output_file_path):
     # Save the preprocessed DataFrame to a CSV file
     df.to_csv(output_file_path, index=False)
