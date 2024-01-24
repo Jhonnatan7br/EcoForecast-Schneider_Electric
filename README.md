@@ -1,6 +1,6 @@
-# EcoForecast Schneider_Electric
- 
-# SE-Europe-Data_Challenge
+![image](https://github.com/Jhonnatan7br/EcoForecast-Schneider_Electric/assets/104907786/dc08ec3d-c9d9-4948-926e-61c6825c3adf)
+
+# SE-Europe-Data_Challenge Schneider_Electric
 NUWE - Schneider Electric European Data Science Challenge in November 2023.
 
 Create a model capable of predicting the country (from a list of nine) that will have the most surplus of green energy in the next hour. It is needed to consider both the energy generation from renewable sources (wind, solar, geothermic, etc.), and the load (energy consumption). The surplus of green energy is considered to be the difference between the generated green energy and the consumed energy.
